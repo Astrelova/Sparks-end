@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Умные часы - Sparks</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .product-page {
+            padding: 40px 0;
+            background: var(--background-color);
+        }
+        
+        .product-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 0 20px;
+        }
+        
+        .product-gallery {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+        
+        .product-main-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .product-info {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+        
+        .product-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+        
+        .product-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .product-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+        
+        .product-features {
+            margin-bottom: 25px;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-secondary);
+        }
+        
+        .feature-list li i {
+            color: var(--primary-color);
+        }
+        
+        .order-section {
+            background: var(--surface-color);
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+        
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background: var(--card-bg);
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+        
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .form-textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .order-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+        
+        .order-btn:hover {
+            background: var(--secondary-color);
+        }
+        
+        .delivery-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .delivery-option {
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .delivery-option.selected {
+            border-color: var(--primary-color);
+            background: var(--surface-color);
+        }
+        
+        .option-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .option-price {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .product-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .delivery-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-gift logo-icon"></i>
+                <h1>Sparks</h1>
+            </div>
+            
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Главная</a>
+                <a href="recommendations.html" class="nav-link">Рекомендации</a>
+                <a href="ai-search.html" class="nav-link">ИИ Поиск</a>
+                <a href="secret-box.html" class="nav-link">Секретный подарок</a>
+            </nav>
+            
+            <div class="header-controls">
+                <button class="icon-btn" id="searchPeopleBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+                
+                <a href="profile.html" class="icon-btn">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+        <!-- Боковая панель поиска людей -->
+    <div id="searchSidebar" class="search-sidebar">
+        <div class="sidebar-header">
+            <h3>Поиск людей</h3>
+            <button class="close-sidebar" id="closeSearchSidebar">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="sidebar-content">
+            <input type="text" id="peopleSearchInput" placeholder="Введите ФИО...">
+            <div id="searchResults" class="search-results">
+                <!-- Здесь будут появляться результаты поиска -->
+            </div>
+        </div>
+    </div>
+
+    <main class="product-page">
+        <div class="product-container">
+            <!-- Галерея товара -->
+            <div class="product-gallery">
+                <img src="https://via.placeholder.com/600x400/7e57c2/FFFFFF?text=Умные+часы" alt="Умные часы" class="product-main-image">
+            </div>
+            
+            <!-- Информация о товаре -->
+            <div class="product-info">
+                <h1 class="product-title">Умные часы Premium</h1>
+                <div class="product-price">12 990 ₽</div>
+                
+                <p class="product-description">
+                    Современные умные часы с функцией отслеживания здоровья, уведомлениями и длительным временем работы батареи. Идеальный спутник для активного образа жизни.
+                </p>
+                
+                <div class="product-features">
+                    <h3 style="margin-bottom: 15px;">Характеристики:</h3>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Отслеживание активности и сна</li>
+                        <li><i class="fas fa-check"></i> Уведомления о звонках и сообщениях</li>
+                        <li><i class="fas fa-check"></i> Водонепроницаемость 5ATM</li>
+                        <li><i class="fas fa-check"></i> До 7 дней работы от батареи</li>
+                        <li><i class="fas fa-check"></i> Мониторинг сердечного ритма</li>
+                    </ul>
+                </div>
+                
+                <!-- Форма заказа -->
+                <div class="order-section">
+                    <h3 style="margin-bottom: 20px;">Оформление заказа</h3>
+                    
+                    <form id="orderForm">
+                        <div class="form-group">
+                            <label class="form-label">Ваше имя *</label>
+                            <input type="text" class="form-input" required placeholder="Введите ваше имя">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Email *</label>
+                            <input type="email" class="form-input" required placeholder="your@email.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Телефон *</label>
+                            <input type="tel" class="form-input" required placeholder="+7 (XXX) XXX-XX-XX">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Способ доставки</label>
+                            <div class="delivery-options">
+                                <div class="delivery-option selected">
+                                    <div class="option-title">Курьерская доставка</div>
+                                    <div class="option-price">300 ₽</div>
+                                    <div style="font-size: 0.9rem; color: var(--text-secondary);">1-2 дня</div>
+                                </div>
+                                <div class="delivery-option">
+                                    <div class="option-title">Самовывоз</div>
+                                    <div class="option-price">Бесплатно</div>
+                                    <div style="font-size: 0.9rem; color: var(--text-secondary);">из магазина</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Адрес доставки</label>
+                            <textarea class="form-textarea" placeholder="Улица, дом, квартира..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Пожелания к упаковке</label>
+                            <select class="form-select">
+                                <option value="standard">Стандартная упаковка</option>
+                                <option value="gift">Подарочная упаковка (+200 ₽)</option>
+                                <option value="premium">Премиум упаковка (+500 ₽)</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="order-btn">
+                            <i class="fas fa-shopping-cart"></i> Заказать
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Выбор способа доставки
+        document.querySelectorAll('.delivery-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.delivery-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                this.classList.add('selected');
+            });
+        });
+        
+        // Обработка формы заказа
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Заказ успешно оформлен! С вами свяжутся для подтверждения.');
+        });
+    </script>
+</body>
+</html>

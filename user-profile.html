@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль пользователя - Sparks</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .user-profile-page {
+            padding: 40px 0;
+        }
+        
+        .user-profile-header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+        
+        .user-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            margin: 0 auto 20px;
+            font-weight: bold;
+        }
+        
+        .user-info {
+            margin-top: 30px;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .info-item {
+            padding: 15px;
+            background: var(--surface-color);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .wishlist-section {
+            margin-top: 40px;
+        }
+        
+        .wishlist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--border-color);
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: var(--text-secondary);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .user-profile-header {
+                padding: 20px;
+            }
+            
+            .user-avatar {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+            
+            .wishlist-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-gift logo-icon"></i>
+                <h1>Sparks</h1>
+            </div>
+            
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Главная</a>
+                <a href="recommendations.html" class="nav-link">Рекомендации</a>
+                <a href="ai-search.html" class="nav-link">ИИ Поиск</a>
+                <a href="secret-box.html" class="nav-link">Секретный подарок</a>
+            </nav>
+            
+            <div class="header-controls">
+                <button class="icon-btn" id="searchPeopleBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+                
+                <a href="profile.html" class="icon-btn">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="user-profile-page">
+        <div class="container">
+            <a href="javascript:history.back()" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Назад
+            </a>
+            
+            <div id="userProfileContent">
+                <!-- Профиль пользователя загружается через JavaScript -->
+                <div style="text-align: center; padding: 40px;">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--primary-color);"></i>
+                    <p>Загрузка профиля...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script src="js/user-profile.js"></script>
+</body>
+</html>
