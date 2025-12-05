@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sparks - Найди идеальный подарок</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="icon.png">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container">
+
+            <div class="logo">
+                <i class="fas fa-gift logo-icon"></i>
+                <h1>Sparks</h1>
+            </div>
+            
+            <nav class="nav">
+                <a href="index.html" class="nav-link active">Главная</a>
+                <a href="recommendations.html" class="nav-link">Рекомендации</a>
+                <a href="ai-search.html" class="nav-link">ИИ Поиск</a>
+                <a href="secret-box.html" class="nav-link">Секретный подарок</a>
+            </nav>
+            
+            <!-- Элементы управления в шапке -->
+            <div class="header-controls">
+                <!-- Кнопка поиска людей -->
+                <button class="icon-btn" id="searchPeopleBtn">
+                    <i class="fas fa-search"></i>
+                </button>  
+                <!-- Иконка личного кабинета -->
+                <a href="profile.html" class="icon-btn">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Боковая панель поиска людей -->
+    <div id="searchSidebar" class="search-sidebar">
+        <div class="sidebar-header">
+            <h3>Поиск людей</h3>
+            <button class="close-sidebar" id="closeSearchSidebar">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="sidebar-content">
+            <input type="text" id="peopleSearchInput" placeholder="Введите ФИО">
+            <div id="searchResults" class="search-results">
+                <!-- Здесь будут появляться результаты поиска -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Главный баннер -->
+    <section class="hero">
+        <div class="container">
+            <h2>Найди идеальный подарок</h2>
+            <p>Sparks поможет вам найти именно то, что порадует ваших близких</p>
+        </div>
+    </section>
+
+
+
+    <script src="js/main.js"></script>
+    <script src="js/recommendations.js"></script>
+</body>
+</html>
