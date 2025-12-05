@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ИИ Поиск подарков - Sparks</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="icon.png">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-gift logo-icon"></i>
+                <h1>Sparks</h1>
+            </div>
+            
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Главная</a>
+                <a href="recommendations.html" class="nav-link">Рекомендации</a>
+                <a href="ai-search.html" class="nav-link active">ИИ Поиск</a>
+                <a href="secret-box.html" class="nav-link">Секретный подарок</a>
+            </nav>
+            
+            <div class="header-controls">
+                <button class="icon-btn" id="searchPeopleBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+                <a href="profile.html" class="icon-btn">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Боковая панель поиска людей -->
+    <div id="searchSidebar" class="search-sidebar">
+        <div class="sidebar-header">
+            <h3>Поиск людей</h3>
+            <button class="close-sidebar" id="closeSearchSidebar">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="sidebar-content">
+            <input type="text" id="peopleSearchInput" placeholder="Введите ФИО">
+            <div id="searchResults" class="search-results"></div>
+        </div>
+    </div>
+
+    <!-- Главный контент ИИ поиска -->
+    <main class="ai-search-page">
+        <div class="container">
+            <div class="ai-search-wrapper">
+                <!-- Левый сайдбар: Чат с ИИ (фиксированная ширина) -->
+                <div class="ai-chat-sidebar">
+                    <div class="chat-sidebar-header">
+                        <div class="chat-title">
+                            <i class="fas fa-robot"></i>
+                            <h2>ИИ Помощник</h2>
+                        </div>
+                        <div class="chat-header-controls">
+                            <button class="icon-btn" id="clearHistoryBtn" title="Очистить историю">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                            <div class="chat-status">
+                                <span class="status-dot active"></span>
+                                <span>Онлайн</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Контейнер сообщений с фиксированной высотой -->
+                    <div class="chat-messages-container" id="chatMessagesContainer">
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="message ai">
+                                <div class="message-avatar">🤖</div>
+                                <div class="message-content">
+                                    <div class="message-text">
+                                        Привет! Я помогу подобрать идеальный подарок. 
+                                        Расскажите мне о человеке:
+                                    </div>
+                                    <div class="message-time">только что</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Поле ввода (внизу сайдбара) -->
+                    <div class="chat-input-section">
+                        <div class="typing-indicator" id="typingIndicator" style="display: none;">
+                            <div class="typing-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <span>ИИ думает...</span>
+                        </div>
+
+                        <div class="input-wrapper">
+                            <textarea 
+                                id="chatInput" 
+                                placeholder="Напишите сообщение..."
+                                rows="1"
+                            ></textarea>
+                            <button id="sendMessageBtn" class="send-btn">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+
+                        <div class="quick-actions">
+                            <button class="quick-action-btn" data-prompt="Нужен подарок для мамы">
+                                <i class="fas fa-female"></i> Маме
+                            </button>
+                            <button class="quick-action-btn" data-prompt="Подарок папе">
+                                <i class="fas fa-male"></i> Папе
+                            </button>
+                            <button class="quick-action-btn" data-prompt="Бюджет 3000 рублей">
+                                <i class="fas fa-wallet"></i> 3000₽
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Правая часть: Предложения подарков (основной контент) -->
+                <div class="ai-gifts-main">
+                    <div class="ai-main-header">
+                        <h1>ИИ Поиск подарков</h1>
+                        <p class="ai-subtitle">Расскажите о человеке в чате слева, и здесь появятся идеальные варианты</p>
+                    </div>
+
+                    <!-- Информационная карточка -->
+                    <div class="ai-info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Как это работает?</h3>
+                            <ul>
+                                <li>Опишите человека в чате слева</li>
+                                <li>ИИ задаст уточняющие вопросы</li>
+                                <li>После диалога появятся персонализированные предложения</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Счетчик подарков -->
+                    <div class="gifts-counter">
+                        <div class="counter-content">
+                            <i class="fas fa-gift"></i>
+                            <div>
+                                <h4>Найдено подарков</h4>
+                                <div class="counter-number" id="resultsCount">0</div>
+                            </div>
+                        </div>
+                    </div>
+
+       <!-- Контейнер результатов -->
+    <div class="ai-results-container" style="display: none;">
+        <div id="emptyState" class="empty-state">
+            <i class="fas fa-gift"></i>
+            <h3>Здесь появятся предложения</h3>
+            <p>Ведите диалог с ИИ, и здесь появятся идеи подарков</p>
+        </div>
+        
+
+                        <!-- Сетка подарков -->
+                        <div class="gifts-grid" id="giftsGrid">
+                            <!-- Подарки будут добавляться здесь -->
+                        </div>
+                    </div>
+
+                 
+                </div>
+            </div>
+        </div>
+    </main>
+
+   
+
+    <script src="js/main.js"></script>
+    <script src="js/ai-search.js"></script>
+</body>
+</html>
